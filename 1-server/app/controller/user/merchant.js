@@ -24,26 +24,24 @@ class MerchantCon extends Controller {
     const { ctx } = this;
     // const data = ctx.request.body;
     // 2， 校验参数
-    const rule = {
-      username: {
-        type: 'string',
-        required: true,
-      },
-      password: {
-        type: 'password',
-        max: 6,
-        min: 6,
-        required: true,
-      },
-      email: {
-        type: 'email',
-        allowEmpty: true,
-      },
-    };
-    ctx.validate(rule);
-    ctx.body = {
-      success: 'true',
-    };
+    try {
+      const rule = {
+        username: {
+          type: 'string',
+          required: true,
+        },
+        password: {
+          type: 'merchantPassword',
+        },
+        email: {
+          type: 'email',
+          allowEmpty: true,
+        },
+      };
+      ctx.validate(rule);
+    } catch (e) {
+      ctx.body = e.errors;
+    }
   }
 }
 
