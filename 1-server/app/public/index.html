@@ -7,6 +7,25 @@
   <title>Document</title>
 </head>
 <body>
-  <h1> test page</h1>
+  <h1> 测试上传文件</h1>
+  <form
+  method="POST"
+  action="/api/merchant/upload"
+  enctype="multipart/form-data"
+>
+  title: <input name="title" /> file: <input name="file" type="file" />
+  <button type="submit">Upload</button>
+</form>
+
+<!-- <form
+  method="POST"
+  action="/upload?_csrf={{ ctx.csrf | safe }}"
+  enctype="multipart/form-data"
+>
+  title: <input name="title" /> file1: <input name="file1" type="file" /> file2:
+  <input name="file2" type="file" />
+  <button type="submit">Upload</button>
+</form> -->
+
 </body>
 </html>

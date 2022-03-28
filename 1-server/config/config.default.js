@@ -27,6 +27,11 @@ module.exports = appInfo => {
         enable: false,
       },
     },
+    multipart: {
+      // fileSize: '10mb',
+      mode: 'stream',
+      // mode: 'file',
+    },
   };
 
   return {

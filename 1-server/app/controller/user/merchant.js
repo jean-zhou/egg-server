@@ -1,7 +1,9 @@
 'use strict';
 
 const Controller = require('../../core/base_controller');
-
+const fs = require('mz/fs');
+const path = require('path');
+// const sendToWormhole = require('stream-wormhole');
 class MerchantCon extends Controller {
   async index() {
     console.log(' index');
@@ -55,6 +57,22 @@ class MerchantCon extends Controller {
       queries: ids,
     };
     this.success(data);
+  }
+
+  /**
+   * 上传文件
+   */
+  async uploadFile() {
+    console.log('upload file ----- ');
+    const { ctx } = this;
+
+    const stream = await ctx.getFileStream();
+    const target = path.join(this.config.baseDir, `app/public/files/${stream.filename}`);
+    const remoteFileStream = fs.createWriteStream(target);
+    stream.pipe(remoteFileStream);
+    console.log('stream', stream);
+    const result = `http://127.0.0.1:7001/public/upload/${stream.filename}`;
+    this.success(result);
   }
 }
 
