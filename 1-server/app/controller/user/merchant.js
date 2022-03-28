@@ -19,13 +19,32 @@ class MerchantCon extends Controller {
    * 3，把参数传给 service 层
    * 4，拿到结果返回 http
    */
-  // async create() {
-  //   // 1,获取参数
-  //   const { ctx } = this;
-  //   const data = ctx.request.body;
-  //   // 2， 校验参数
-
-  // }
+  async create() {
+    // 1,获取参数
+    const { ctx } = this;
+    // const data = ctx.request.body;
+    // 2， 校验参数
+    const rule = {
+      username: {
+        type: 'string',
+        required: true,
+      },
+      password: {
+        type: 'password',
+        max: 6,
+        min: 6,
+        required: true,
+      },
+      email: {
+        type: 'email',
+        allowEmpty: true,
+      },
+    };
+    ctx.validate(rule);
+    ctx.body = {
+      success: 'true',
+    };
+  }
 }
 
 module.exports = MerchantCon;
