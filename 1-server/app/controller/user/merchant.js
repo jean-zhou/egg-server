@@ -43,6 +43,19 @@ class MerchantCon extends Controller {
       ctx.body = e.errors;
     }
   }
+
+  /**
+   * 多个路由参数 query
+   */
+  async listPosts() {
+    const { ctx } = this;
+    const ids = ctx.queries;
+    console.log('ids', ids);
+    const data = {
+      queries: ids,
+    };
+    this.success(data);
+  }
 }
 
 module.exports = MerchantCon;
